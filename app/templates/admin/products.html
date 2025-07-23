@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Ürün Listesi (Admin)</h1>
+
+<!-- Buton: Yeni Ürün Ekle formunu aç/kapa -->
+<button class="btn btn-primary mb-3" type="button" id="toggleAddFormBtn">
+  Yeni Ürün Ekle
+</button>
+
+<!-- Başlangıçta gizli form -->
+<div id="addProductForm" style="display:none;">
+  <form action="{{ url_for('admin.add_product') }}" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="name" class="form-label">Ürün İsmi</label>
+      <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <select name="category_id" class="form-control" required>
+  <option value="">Kategori Seç</option>
+  {% for category in categories %}
+    <option value="{{ category.id }}">{{ category.name }}</option>
+  {% endfor %}
+</select>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Açıklama</label>
+      <textarea class="form-control" id="description" name="description"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Fiyat</label>
+      <input type="number" step="0.01" class="form-control" id="price" name="price" required>
+    </div>
+    <div class="mb-3">
+      <label for="stock" class="form-label">Stok</label>
+      <input type="number" class="form-control" id="stock" name="stock" required>
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Ürün Resmi</label>
+      <input type="file" class="form-control" id="image" name="image">
+    </div>
+    <button type="submit" class="btn btn-success">Ürün Ekle</button>
+  </form>
+  <hr>
+</div>
+
+<!-- Ürün Listesi Tablosu -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>İsim</th>
+      <th>Fiyat</th>
+      <th>Stok</th>
+      <th>İşlemler</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr>
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.price }} ₺</td>
+      <td>{{ product.stock }}</td>
+      <td>
+        <a href="{{ url_for('admin.edit_product', id=product.id) }}" class="btn btn-sm btn-warning">Düzenle</a>
+        <form action="{{ url_for('admin.delete_product', id=product.id) }}" method="POST" style="display:inline;">
+          <button type="submit" class="btn btn-sm btn-danger">Sil</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+// Butona tıklanınca form göster/gizle
+document.getElementById('toggleAddFormBtn').addEventListener('click', function() {
+  const form = document.getElementById('addProductForm');
+  if (form.style.display === 'none') {
+    form.style.display = 'block';
+  } else {
+    form.style.display = 'none';
+  }
+});
+</script>
+{% endblock %}

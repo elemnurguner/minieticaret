@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Ürünler{% endblock %}
+
+{% block content %}
+<h1>Ürünler</h1>
+<div>
+<a href="{{ url_for('shop.view_cart') }}" class="btn btn-warning float-end">🛒 Sepeti Gör</a>
+</div>
+<div class="row">
+  {% for product in products %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        {% if product.image %}
+          <img src="{{ url_for('static', filename='uploads/' + product.image) }}" class="card-img-top" alt="{{ product.name }}">
+        {% else %}
+          <img src="{{ url_for('static', filename='images/no-image.png') }}" class="card-img-top" alt="Resim yok">
+        {% endif %}
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">{{ product.description|truncate(100) }}</p>
+          <p class="card-text"><strong>{{ product.price }} ₺</strong></p>
+        <form action="{{ url_for('shop.add_to_cart', product_id=product.id) }}" method="POST">
+  <input type="number" name="quantity" value="1" min="1">
+  <button type="submit">Sepete Ekle</button>
+</form>
+
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <p>Henüz ürün yok.</p>
+  {% endfor %}
+</div>
+
+{% endblock %}

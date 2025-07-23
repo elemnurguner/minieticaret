@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Kategori Düzenle{% endblock %}
+{% block content %}
+<h1>Kategori Düzenle</h1>
+<form method="POST" action="{{ url_for('admin.edit_category', category_id=category.id) }}">
+  <div class="mb-3">
+    <label for="name" class="form-label">Kategori Adı</label>
+    <input type="text" id="name" name="name" class="form-control" required autofocus value="{{ category.name }}">
+  </div>
+  <button type="submit" class="btn btn-primary">Güncelle</button>
+  <a href="{{ url_for('admin.categories') }}" class="btn btn-secondary">İptal</a>
+</form>
+{% endblock %}

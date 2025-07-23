@@ -1,0 +1,52 @@
+# 🛒 Flask E-Ticaret Yönetim Paneli
+
+Bu proje, Flask ile geliştirilmiş basit ama güçlü bir **Admin Paneli + Ürün Yönetim Sistemi**'dir. Kullanıcı girişi, admin yetkilendirmesi, ürün & kategori yönetimi, modal form entegrasyonu gibi birçok özelliği içerisinde barındırır.
+
+---
+
+## 🚀 Özellikler
+
+### 👤 Kullanıcı Giriş Sistemi
+- Kullanıcı kaydı ve giriş sistemi (Flask-Login)
+- Şifre hashing (Werkzeug)
+- Session yönetimi
+
+### 🔐 Yetkilendirme Sistemi
+- `user` ve `admin` olmak üzere iki rol
+- Yalnızca `admin` yetkisine sahip kullanıcılar admin paneline erişebilir
+- Admin, diğer kullanıcıların yetkilerini değiştirebilir
+
+### 📦 Ürün Yönetimi
+- Ürün ekleme (modal ile açılır form)
+- Ürün listeleme
+- Ürün düzenleme (ayrı sayfa olarak)
+- Ürün silme
+- Ürün stok, fiyat, açıklama, kategori gibi bilgilerin yönetimi
+
+### 🗂️ Kategori Yönetimi
+- Kategori ekleme (modal form)
+- Kategori listeleme
+- Kategori silme
+
+### 👥 Kullanıcı Yönetimi (Sadece Admin)
+- Sistemdeki tüm kullanıcıları listeleme
+- Kullanıcıların yetkisini `user <=> admin` olarak değiştirme
+
+### ✅ Modal Entegrasyonu
+- Bootstrap modal kullanılarak aynı sayfa içinde form açılır (kategori & ürün ekleme)
+
+---
+
+## 🛠️ Kullanılan Teknolojiler
+
+| Teknoloji | Açıklama |
+|----------|----------|
+| Python | Backend dili |
+| Flask | Web framework |
+| Flask-Login | Oturum yönetimi |
+| SQLite | Veritabanı (opsiyonel olarak PostgreSQL ile de çalışır) |
+| Bootstrap 5 | UI tasarımı ve modal |
+| Jinja2 | HTML şablon motoru |
+
+---
+

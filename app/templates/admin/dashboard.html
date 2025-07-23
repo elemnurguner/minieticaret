@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Paneli{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1>Admin Paneline Hoşgeldiniz</h1>
+  <p>Burada admin işlemlerini yönetebilirsiniz.</p>
+
+  <div class="list-group mt-4">
+    <a href="{{ url_for('admin.users') }}" class="list-group-item list-group-item-action">
+      Kullanıcıları Yönet
+    </a>
+    <a href="{{ url_for('admin.categories') }}" class="list-group-item list-group-item-action">
+      Kategorileri Yönet
+    </a>
+    <a href="{{ url_for('admin.products') }}" class="list-group-item list-group-item-action">
+      Ürünleri Yönet
+    </a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Kullanıcılar{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Kullanıcılar</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>İsim</th>
+        <th>Email</th>
+        <th>Rol</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <form method="POST" action="{{ url_for('admin.change_user_role', user_id=user.id) }}">
+            <select name="role" class="form-select" onchange="this.form.submit()">
+              <option value="viewer" {% if user.role == 'viewer' %}selected{% endif %}>Viewer</option>
+              <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+            </select>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
